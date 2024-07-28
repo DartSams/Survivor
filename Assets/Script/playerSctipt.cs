@@ -16,9 +16,8 @@ public class playerSctipt : MonoBehaviour
     public TMP_Text coinText; //player health text 
     public Camera mainCamera;
     public GameObject gun;
-    public Transform gunBarrell;
-    public GameObject bullet;
     public List<GameObject> passiveWeapons; 
+    public List<GameObject> upgrades;
     int moveSpeed = 5;
     bool isPaused = false;
     public int coins;
@@ -62,6 +61,7 @@ public class playerSctipt : MonoBehaviour
     {
         coins++;
         coinText.text = "Coin:" + coins.ToString();
+        Debug.Log("picked up coin");
     }
 
     public void loseCoin()
@@ -96,6 +96,7 @@ public class playerSctipt : MonoBehaviour
             //Destroy(other.gameObject);
             Debug.Log("Enemy touched. Coins: " + coins);
         }
+        
     }
     private void OnEnable()
     {
@@ -158,7 +159,7 @@ public class playerSctipt : MonoBehaviour
 
     void OnShootPerformed(InputAction.CallbackContext value)
     {
-        GameObject b = Instantiate(bullet, gunBarrell.position, gun.transform.rotation);
+        gun.GetComponent<gunScript>().shoot();
         
     }
 

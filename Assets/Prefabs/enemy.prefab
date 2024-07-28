@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6060832915689883110}
+  - component: {fileID: 6060832915689883113}
   - component: {fileID: 6060832915689883111}
   - component: {fileID: 6060832915689883112}
-  - component: {fileID: 6060832915689883113}
   m_Layer: 0
   m_Name: enemy
   m_TagString: enemy
@@ -34,6 +34,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6060832915689883113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6060832915689883109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85794c1f63a26424e964cde75adb397d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  currentHealth: 0
+  maxHealth: 10
+  bloodSplatter: {fileID: 4059851142298717857, guid: 322b4710e858ed646bf0b7a17da7c5c7, type: 3}
+  coin: {fileID: 7213657570700425966, guid: 1452a263167552046ab7674b2fe6addc, type: 3}
 --- !u!212 &6060832915689883111
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -114,16 +131,3 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5773587}
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
---- !u!114 &6060832915689883113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6060832915689883109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85794c1f63a26424e964cde75adb397d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1

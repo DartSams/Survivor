@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class enemyScript : MonoBehaviour
 {
-    public float moveSpeed = 0.5f;
+    float moveSpeed = 0.5f;
     playerSctipt ps;
     GameObject player;
     Rigidbody2D rb;
     manager gameManager;
+    Animator anim;
+    public float currentHealth;
+    public float maxHealth;
+    public GameObject bloodSplatter;
+    public GameObject loot;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -17,13 +23,13 @@ public class enemyScript : MonoBehaviour
         ps = player.GetComponent<playerSctipt>();
         rb = GetComponent<Rigidbody2D>();
         gameManager = GameObject.Find("gameMaster").GetComponent<manager>();
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * moveSpeed);
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,6 +42,28 @@ public class enemyScript : MonoBehaviour
 
     void OnDestroy()
     {
+        Debug.Log("Enemy died");
         gameManager.RemoveEnemyFromList(gameObject);
+        Instantiate(bloodSplatter,transform.position,transform.rotation);
+        Instantiate(loot,transform.position,transform.rotation);
+    }
+
+    public void addHealth()
+    {
+        currentHealth += 1;
+    }
+
+    public void loseHealth(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void upgradeHealth()
+    {
+        maxHealth += 2.5f;
     }
 }

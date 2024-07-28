@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     playerSctipt ps;
+    public int damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +23,8 @@ public class Projectile : MonoBehaviour
         if (collision.transform.tag == "enemy")
         {
             ps.addCoin();
+            collision.GetComponent<enemyScript>().loseHealth(damage);
             Destroy(gameObject);
-            Destroy(collision.gameObject);
         }
     }
 }

@@ -18,11 +18,12 @@ public class playerSctipt : MonoBehaviour
     public GameObject gun;
     public List<GameObject> passiveWeapons; 
     public List<GameObject> upgrades;
-    int moveSpeed = 5;
+    public int moveSpeed = 5;
     bool isPaused = false;
     public int coins;
     public int currentHealth;
     public int maxHealth = 100;
+    float gunRotationDistance = 1.7f;
 
 
     // Start is called before the first frame update
@@ -53,7 +54,7 @@ public class playerSctipt : MonoBehaviour
         Vector2 direction = (worldMousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         gun.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        gun.transform.position = transform.position + (Vector3)direction;
+        gun.transform.position = transform.position + (Vector3)direction * gunRotationDistance;
 
     } //rotates the player to the main camera camera when in third person
 
@@ -90,12 +91,7 @@ public class playerSctipt : MonoBehaviour
             Destroy(other.gameObject);
             Debug.Log("Collectible touched and destroyed. Coins: " + coins);
         }
-        if (other.transform.tag == "enemy")
-        {
-            loseHealth();
-            //Destroy(other.gameObject);
-            Debug.Log("Enemy touched. Coins: " + coins);
-        }
+        
         
     }
     private void OnEnable()

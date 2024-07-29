@@ -5,10 +5,11 @@ using UnityEngine;
 public class itemPickupScript : MonoBehaviour
 {
     public BoxCollider2D playerRadius;
+    playerSctipt pc;
     // Start is called before the first frame update
     void Awake()
     {
-
+        pc = GetComponent<playerSctipt>();
     }
 
     // Update is called once per frame
@@ -19,11 +20,16 @@ public class itemPickupScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        Destroy(collision.gameObject);
         if (collision.transform.name == "magnet")
         {
             //increase radius
             playerRadius.edgeRadius += 0.5f;
-            Destroy(collision.gameObject);
         }
+        if (collision.transform.name == "sprint boost")
+        {
+            pc.moveSpeed += 1;
+        }
+        
     }
 }

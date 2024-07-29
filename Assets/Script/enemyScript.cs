@@ -10,6 +10,7 @@ public class enemyScript : MonoBehaviour
     Rigidbody2D rb;
     manager gameManager;
     Animator anim;
+    SpriteRenderer sr;
     public float currentHealth;
     public float maxHealth;
     public GameObject bloodSplatter;
@@ -20,6 +21,7 @@ public class enemyScript : MonoBehaviour
     void Awake()
     {
         player = GameObject.Find("Player");
+        sr = GetComponent<SpriteRenderer>();
         ps = player.GetComponent<playerSctipt>();
         rb = GetComponent<Rigidbody2D>();
         gameManager = GameObject.Find("gameMaster").GetComponent<manager>();
@@ -30,6 +32,7 @@ public class enemyScript : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * moveSpeed);
+        changeDirection();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,8 +47,7 @@ public class enemyScript : MonoBehaviour
     {
         Debug.Log("Enemy died");
         gameManager.RemoveEnemyFromList(gameObject);
-        Instantiate(bloodSplatter,transform.position,transform.rotation);
-        Instantiate(loot,transform.position,transform.rotation);
+        
     }
 
     public void addHealth()
@@ -59,11 +61,25 @@ public class enemyScript : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
+            Instantiate(bloodSplatter, transform.position, transform.rotation);
+            Instantiate(loot, transform.position, transform.rotation);
         }
     }
 
     public void upgradeHealth()
     {
         maxHealth += 2.5f;
+    }
+
+    void changeDirection()
+    {
+        if (transform.position.x > player.transform.position.x)
+        {
+            sr.flipX = false;
+        } else
+        {
+            sr.flipX = true;
+        }
+        
     }
 }

@@ -20,15 +20,17 @@ public class itemPickupScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
+        
         if (collision.transform.name == "magnet")
         {
             //increase radius
             playerRadius.edgeRadius += 0.5f;
+            Destroy(collision.gameObject);
         }
         if (collision.transform.name == "sprint boost")
         {
             pc.moveSpeed += 1;
+            Destroy(collision.gameObject);
         }
         
     }

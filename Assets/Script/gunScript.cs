@@ -5,7 +5,7 @@ using UnityEngine;
 public class gunScript : MonoBehaviour
 {
     public GameObject bullet;
-    public Transform gunBarrell;
+    public GameObject gunBarrell;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +20,6 @@ public class gunScript : MonoBehaviour
 
     public void shoot()
     {
-        GameObject b = Instantiate(bullet, gunBarrell.position, transform.rotation);
+        GameObject b = Instantiate(bullet, gunBarrell.transform.position, gunBarrell.transform.rotation);
     }
 }

@@ -14,6 +14,7 @@ public class playerSctipt : MonoBehaviour
     Vector2 moveVector;
     public TMP_Text healthText; //player health text 
     public TMP_Text coinText; //player health text 
+    public GameObject pauseMenu;
     public Camera mainCamera;
     public GameObject gun;
     public List<GameObject> passiveWeapons; 
@@ -138,19 +139,19 @@ public class playerSctipt : MonoBehaviour
 
     private void OnPausePerformed(InputAction.CallbackContext value)
     {
-        {
-            isPaused = !isPaused;
+        pauseMenu.active = true;
+        isPaused = !isPaused;
 
-            // Pause or unpause the game by manipulating Time.timeScale
-            if (isPaused)
-            {
-                Time.timeScale = 0f; // Pause the game
-            }
-            else
-            {
-                Time.timeScale = 1f; // Unpause the game
-            }
+        // Pause or unpause the game by manipulating Time.timeScale
+        if (isPaused)
+        {
+            Time.timeScale = 0f; // Pause the game
         }
+        else
+        {
+            Time.timeScale = 1f; // Unpause the game
+        }
+        
     }
 
     void OnShootPerformed(InputAction.CallbackContext value)

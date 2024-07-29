@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class particleDestroy : MonoBehaviour
 {
+    public float delay;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,6 @@ public class particleDestroy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Destroy(gameObject,0.5f);
+        Destroy(gameObject,delay);
     }
 }
